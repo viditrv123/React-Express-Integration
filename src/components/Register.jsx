@@ -4,6 +4,18 @@ import Input from "./Input";
 import axios from "axios";
 import styled from "styled-components";
 
+const Button = styled.button`
+  /* Adapt the colors based on primary prop */
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
+
 export default class Login extends Component{
     constructor(props){
         super(props);
@@ -41,8 +53,9 @@ export default class Login extends Component{
         console.log(user);
 
         axios.post('http://localhost:5000/users/add',user)
-            .then(res=>console.log(res.data));
-            
+            .then(res=>console.log(res.data))
+            .catch(e=>console.log("Error:"+e)
+            )
         // window.location="/";
         
     }
@@ -50,17 +63,23 @@ export default class Login extends Component{
 
     render(){
         return(
-            <Layout>
-                
+            <div>
+                <div className="col-md-2"></div>
+                <div className="col-md-8">
                 <form onSubmit={this.onSubmit}>
+                
+                
                 <h1>Register</h1>
                     <label>Email</label>
                     <input type="text" className="form-control" placeholder="Enter Email" value={this.state.username} onChange={this.onChangeUsername}/> 
+                    <br></br>
                     <label>Password</label>
                     <input type="Password" className="form-control" placeholder="Enter Password" value={this.state.password} onChange={this.onChangePassword}/>
-                    <button type="submit">Submit</button>
+                    <Button type="submit">Submit</Button>
                 </form>
-            </Layout>
+                </div>
+                <div className="col-md-2"></div>
+                </div>
         )
     }
 }

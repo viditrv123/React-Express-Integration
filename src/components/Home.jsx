@@ -1,13 +1,25 @@
 import React from "react";
 import Footer from "./Footer";
-import Image from "./Image";
+import Carousel from 'react-bootstrap/Carousel'
 import NavigationBar from "./NavigationBar";
+import Caro from "./Caro";
+import  Carding from "./Carding";
 
 function Home(){
     return(
         <div>
         <NavigationBar />
-        <Image src="https://c0.wallpaperflare.com/preview/936/202/464/blog-business-copywriter-couch.jpg" alt="freelancer"/>        
+        <Caro />
+
+        <h1 style={{textAlign:"center", color:"white", backgroundColor:"black", padding:"0px", marginBottom:"0px"}}>Login As</h1>
+        
+        <div className="flex-container" style={{alignContent:"center"}}>
+        
+        <div><Carding name="Login As Admin" href="/Admin_login"/></div>
+        <div><Carding name="Login As Developer" href="/Login"/></div>
+        <div><Carding name="Login As Freelancer" href="/Login"/></div>
+        
+        </div>
             <Footer />
             </div>
     );

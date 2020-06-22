@@ -3,7 +3,8 @@ import {Nav, Navbar} from "react-bootstrap";
 import styled from "styled-components";
 
 function NavigationBar(){
-    return(<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    return(<div style={{padding:"0px"}}>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Navbar.Brand href="/">Rexzed</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
@@ -17,6 +18,7 @@ function NavigationBar(){
       
     </Nav>
     </Navbar.Collapse>
-  </Navbar>);
+  </Navbar>
+  </div>);
 }
 export default NavigationBar;

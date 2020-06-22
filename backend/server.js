@@ -1,6 +1,7 @@
 const express =require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cookieParser=require("cookie-parser");
 
 require('dotenv').config();
 
@@ -26,6 +27,10 @@ connection.once('open',()=>{
 const usersRouter= require("./routes/users");
 
 app.use('/users',usersRouter);
+
+const adminRouter= require("./routes/admin");
+
+app.use('/admin',adminRouter);
 
 
 

@@ -10,7 +10,8 @@ import NoMatch from "./NoMatch";
 import Layout from "./Layout";
 import NavigationBar from "./NavigationBar";
 import Register from "./Register";
-
+import Admin_login from "./Admin_login";
+import Dashboard from "./Dashboard";
 
 function App(){
     return <div>
@@ -22,6 +23,9 @@ function App(){
                 <Route  path="/contact" component={Contact}/>
                 <Route  path="/Login" component={Login}/>
                 <Route  path="/Register" component={Register}/>
+                <Route  path="/Admin_login" component={Admin_login}/>
+                <Route  path="/Admin/Dashboard" component={Dashboard}/>
+
                 <Route  component={NoMatch}/>
             </Switch>
         </Router>

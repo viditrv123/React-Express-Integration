@@ -46,8 +46,9 @@ export default class Login extends Component{
     render(){
         return(
             <Layout>
-                <h1>Login</h1>
+                
                 <form onSubmit={this.onSubmit}>
+                <h1>Login</h1>
                     <label>Email</label>
                     <input type="text" className="form-control" placeholder="Enter Email" value={this.state.username} onChange={this.onChangeUsername}/> 
                     <label>Password</label>
