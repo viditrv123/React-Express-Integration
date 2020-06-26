@@ -1,19 +1,56 @@
-import React from "react";
-import Footer from "./Footer";
-import axios from "axios";
+import React, { Component } from "react";
+import AuthService from "../services/auth.service";
+import { Redirect } from 'react-router-dom'
+import NavigationBar from "./NavigationBar";
 
-var users=[];
-axios.get('http://localhost:5000/admin/dashboard')
-            .then(res=>console.log(res.data))
-            .catch(e=>console.log("Error:"+e))
+export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
 
-function Dashboard(){
-    return(
-        <div>
-        <h1>Dashboard</h1>
-            <Footer />
-        </div>
+    this.state = {
+      currentUser: AuthService.getCurrentUser()
+    };
+  }
+  users_name() {
+    window.location="/profile";
+  }
+
+  render() {
+    const { currentUser } = this.state;
+    const isAuthenticated = localStorage.getItem("user");
+    console.log(isAuthenticated);
+    
+
+    return (isAuthenticated ? (
+      <div>
+      <div className="container">
+      <NavigationBar />
+        <header className="jumbotron">
+          <h3>
+            <strong>{currentUser.user.username}</strong> Profile
+          </h3>
+        </header>
+        <p>
+          <strong>Token:</strong>{" "}
+          {currentUser.token.substring(0, 20)} ...{" "}
+          {currentUser.token.substr(currentUser.token.length - 20)}
+        </p>
+        <p>
+          <strong>Id:</strong>{" "}
+          {currentUser.user.id}
+        </p>
+        
+        <strong>Authorities:</strong>
+        <ul>
+          
+           <li> {currentUser.user.username}</li>
+        </ul>
+        <button onClick={this.users_name}>Users</button>
+      </div>
+      </div>) : (
+        <Redirect to={{ pathname: '/login' }} />
+        
     )
+    );
+  }
 }
-
-export default Dashboard;

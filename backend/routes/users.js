@@ -11,7 +11,7 @@ router.get('/',auth,(req, res) => {
 
 });
 
-router.route('/add').post((req, res) => {
+router.route('/register').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const admin = false;
@@ -50,6 +50,7 @@ router.route('/add').post((req, res) => {
             }
 
         })
+        .catch(err=>res.status(404).json('error'+err));
 
 
 
@@ -62,7 +63,7 @@ router.route('/add').post((req, res) => {
 
 
 
-router.route('/auth').post((req, res) => {
+router.route('/login').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     
@@ -90,13 +91,7 @@ router.route('/auth').post((req, res) => {
             }
 
         })
-
-
-
-
-
-
-
+        .catch(err=>res.status(404).json('error'+err));
 });
 
 

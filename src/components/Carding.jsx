@@ -2,8 +2,8 @@ import React from "react";
 import {Card,Button} from "react-bootstrap"
 
 function Carding(props){
-    return(<Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="holder.js/100px180" />
+    return(<Card style={{ width: '18rem',height:'18rem' }}>
+    <Card.Img style={{ width: '18rem',height:'10rem' }} variant="top" src={props.img} />
     <Card.Body>
       <Card.Title>{props.name}</Card.Title>
       {/* <Card.Text>

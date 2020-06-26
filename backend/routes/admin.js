@@ -1,31 +1,45 @@
 const router=require('express').Router();
 let User =require('../models/user.model');
+const auth=require("../middleware/auth");
 
-router.route('/dashboard').get((req,res)=>{
+router.get('/dashboard',auth,(req,res)=>{
     User.find()
     .then(users=>res.json(users))
     .catch(err=>res.status(400).json('Error:'+err));
 
 });
 
-router.route('/').post((req,res)=>{
+router.post('/login',auth,(req,res)=>{
     const username=req.body.username;
     const password=req.body.password;
-    
-
-    User.find({'username':username},(err,user1)=>{
-        if(err)
-        console.log(err);
-        else{
-            console.log(user1[0]);
+    if (!username || !password) {
+        return res.status(400).json({ msg: 'Please enter valid fields' });
+    }
+    User.findOne({ username })
+        .then(user => {
+            console.log(user);
             
-            if(user1[0].password===password&&user1[0].admin==true)
-            res.json(user1);
-            else
-            res.json("0");
-        }
-        
-    })
+            if (!user) return res.status(400).json({ msg: 'User does not exists' });
+            else{
+                bcrypt.compare(password, user.password)
+                .then(isMatch=>{
+                    if(!isMatch) return res.status(400).json({msg:"Invalid credentialss"});
+                    jwt.sign({ id: user.id }, 'mysecret', { expiresIn: 3600 }, (err, token) => {
+                        if (err) throw err;
+                        res.json({
+                            token,
+                            user: {
+                                id: user.id,
+                                username: user.username
+                            }
+                        });
+                    })
+                })
+            }
+
+        })
+        .catch(err=>res.status(404).json('error'+err));
+
         
         
 });

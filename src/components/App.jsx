@@ -12,6 +12,9 @@ import NavigationBar from "./NavigationBar";
 import Register from "./Register";
 import Admin_login from "./Admin_login";
 import Dashboard from "./Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+import Profile from "./Profile";
+
 
 function App(){
     return <div>
@@ -24,8 +27,8 @@ function App(){
                 <Route  path="/Login" component={Login}/>
                 <Route  path="/Register" component={Register}/>
                 <Route  path="/Admin_login" component={Admin_login}/>
-                <Route  path="/Admin/Dashboard" component={Dashboard}/>
-
+                <ProtectedRoute  path="/Dashboard" component={Dashboard}/>
+                <ProtectedRoute  path="/Profile" component={Profile}/>
                 <Route  component={NoMatch}/>
             </Switch>
         </Router>

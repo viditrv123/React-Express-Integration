@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Input from "./Input";
 import axios from "axios";
 import styled from "styled-components";
+import AuthService from "../services/auth.service";
 
 const Button = styled.button`
   /* Adapt the colors based on primary prop */
@@ -45,20 +46,29 @@ export default class Login extends Component{
     onSubmit(e){
         e.preventDefault();
 
-        const user={
-            username:this.state.username,
-            password:this.state.password
-        }
+        // const user={
+        //     username:this.state.username,
+        //     password:this.state.password
+        // }
 
-        console.log(user);
+        // console.log(user);
 
-        axios.post('http://localhost:5000/users/add',user)
-            .then(res=>console.log(res.data))
-            .catch(e=>console.log("Error:"+e)
-            )
+        // axios.post('http://localhost:5000/users/register',user)
+        //     .then(res=>console.log(res.data))
+        //     .catch(e=>console.log("Error:"+e)
+        //     )
         // window.location="/";
+
+        AuthService.register(this.state.username, this.state.password).then(
+            () => {
+                this.props.history.push("/dashboard");
+                window.location.reload();
+            }
+        )
+
+        }
         
-    }
+    
 
 
     render(){

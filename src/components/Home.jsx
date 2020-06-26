@@ -15,9 +15,9 @@ function Home(){
         
         <div className="flex-container" style={{alignContent:"center"}}>
         
-        <div><Carding name="Login As Admin" href="/Admin_login"/></div>
-        <div><Carding name="Login As Developer" href="/Login"/></div>
-        <div><Carding name="Login As Freelancer" href="/Login"/></div>
+        <div><Carding name="Login As Admin" img="../assets/pic1.jpg" href="/Admin_login"/></div>
+        <div><Carding name="Login As Developer" img="../assets/pic2.jpg" href="/Login"/></div>
+        <div><Carding name="Login As Freelancer" img="../assets/pic3.jpg" href="/Login"/></div>
         
         </div>
             <Footer />

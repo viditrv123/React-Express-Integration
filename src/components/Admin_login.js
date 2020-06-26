@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import Input from "./Input";
 import axios from "axios";
 import styled from "styled-components";
+import AuthService from "../services/auth.service"
 // import auth from "../auth"
 
 const Button = styled.button`
@@ -46,22 +47,17 @@ export default class Login extends Component{
     onSubmit(e){
         e.preventDefault();
 
-        const user={
-            username:this.state.username,
-            password:this.state.password
-        }
+        
 
-        console.log(user);
-        var result="";
-        axios.post('http://localhost:5000/admin',user)
-            .then(res=>{console.log(res.data);
-            result=res.data;
-            console.log(result);
-            })
-            .catch(e=>console.log("Error:"+e)
-            )   
+
+        AuthService.login(this.state.username, this.state.password).then(
+            () => {
+                this.props.history.push("/dashboard");
+                window.location.reload();
+            }
+        )
             
-            window.location="/admin/dashboard";
+           
             
 
     }
