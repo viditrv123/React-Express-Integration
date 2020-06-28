@@ -14,6 +14,7 @@ import Admin_login from "./Admin_login";
 import Dashboard from "./Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import Profile from "./Profile";
+import Details from "./Details"
 
 
 function App(){
@@ -29,6 +30,7 @@ function App(){
                 <Route  path="/Admin_login" component={Admin_login}/>
                 <ProtectedRoute  path="/Dashboard" component={Dashboard}/>
                 <ProtectedRoute  path="/Profile" component={Profile}/>
+                <ProtectedRoute  path="/Profile/:id" component={Details}/>
                 <Route  component={NoMatch}/>
             </Switch>
         </Router>

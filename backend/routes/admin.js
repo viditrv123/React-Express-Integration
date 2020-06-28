@@ -2,8 +2,20 @@ const router=require('express').Router();
 let User =require('../models/user.model');
 const auth=require("../middleware/auth");
 
-router.get('/dashboard',auth,(req,res)=>{
+router.get('/user',auth,(req,res)=>{
+    console.log("I am Here");
+    
     User.find()
+    .then(users=>res.json(users))
+    .catch(err=>res.status(400).json('Error:'+err));
+
+});
+
+router.get('/user/:id',(req,res)=>{
+    console.log("I am Here");
+    console.log(req.params);
+    
+    User.findById(req.params)
     .then(users=>res.json(users))
     .catch(err=>res.status(400).json('Error:'+err));
 
